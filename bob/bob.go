@@ -1,23 +1,31 @@
 package bob
 
 import (
-	"strconv"
 	"strings"
 )
 
 // Hey should have a comment documenting it.
 func Hey(remark string) string {
+
+	allCapsRemark := strings.ToUpper(remark)
+	isAllCaps := allCapsRemark == remark && allCapsRemark != strings.ToLower(allCapsRemark)
+	isQuestion := strings.HasSuffix(remark, "?")
+
 	if remark == "" {
 		return "Fine. Be that way!"
-	} else if remark == strings.ToUpper(remark) && "false" == strconv.FormatBool(strings.ContainsAny(remark, "?")) {
-		return "Whoa, chill out!"
-	} else if remark == strings.ToUpper(remark) && "true" == strconv.FormatBool(strings.ContainsAny(remark, "?")) {
-		return "Calm down, I know what I'm doing!"
-	} else if "true" == strconv.FormatBool(strings.ContainsAny(remark, "?")) {
-		return "Sure."
-	} else {
-		return "Whatever."
 	}
+	if isQuestion && isAllCaps {
+		return "Calm down, I know what I'm doing!"
+	}
+	if isAllCaps {
+		return "Whoa, chill out!"
+	}
+	if isQuestion {
+		return "Sure."
+	}
+
+	return "Whatever."
 }
 
-// To do: figure out uppercase conditions
+// To do: figure out "      "
+//https://gistpages.com/posts/go-lang-check-if-a-string-is-empty
