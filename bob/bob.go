@@ -4,14 +4,15 @@ import (
 	"strings"
 )
 
-// Hey should have a comment documenting it.
+// Hey if a function that returns the comments of a teenager named Bob.
 func Hey(remark string) string {
 
-	allCapsRemark := strings.ToUpper(remark)
-	isAllCaps := allCapsRemark == remark && allCapsRemark != strings.ToLower(allCapsRemark)
-	isQuestion := strings.HasSuffix(remark, "?")
+	trimmedRemark := strings.TrimSpace(remark)
+	allCapsRemark := strings.ToUpper(trimmedRemark)
+	isAllCaps := allCapsRemark == trimmedRemark && allCapsRemark != strings.ToLower(allCapsRemark)
+	isQuestion := strings.HasSuffix(trimmedRemark, "?")
 
-	if remark == "" {
+	if trimmedRemark == "" {
 		return "Fine. Be that way!"
 	}
 	if isQuestion && isAllCaps {
@@ -26,6 +27,3 @@ func Hey(remark string) string {
 
 	return "Whatever."
 }
-
-// To do: figure out "      "
-//https://gistpages.com/posts/go-lang-check-if-a-string-is-empty
